@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O Poder do Pensamento Transformativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1F2ED;
+  --ink:#16233B;
+  --muted:#5A6577;
+  --brass:#8C6718;
+  --rule:#D4D6CE;
+  --night:#101A2B;
+  --night-ink:#E9EAE4;
+  --night-brass:#D2A54A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light dark;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --paper:#0E1726;
+    --ink:#E4E6E0;
+    --muted:#96A1B2;
+    --brass:#D2A54A;
+    --rule:#26344A;
+    --night:#08101C;
+    --night-ink:#E9EAE4;
+    --night-brass:#D2A54A;
+  }
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1726;
+    --ink:#E4E6E0;
+    --muted:#96A1B2;
+    --brass:#D2A54A;
+    --rule:#26344A;
+    --night:#08101C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1726;
+  --ink:#E4E6E0;
+  --muted:#96A1B2;
+  --brass:#D2A54A;
+  --rule:#26344A;
+  --night:#08101C;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 2rem)}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Literata",Georgia,"Times New Roman",serif;
+  font-size:1.0625rem;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+
+/* progress */
+#progress{
+  position:fixed;left:0;right:0;top:0;height:3px;
+  padding-top:env(safe-area-inset-top,0px);
+  z-index:50;pointer-events:none;
+}
+#progress span{display:block;height:3px;width:0;background:var(--brass);transition:width .12s linear}
+
+/* layout */
+.wrap{max-width:38rem;margin:0 auto;padding:0 1.35rem}
+
+/* cover */
+.cover{
+  background:var(--night);
+  color:var(--night-ink);
+  padding:clamp(4rem,14vh,8rem) 0 clamp(3.5rem,10vh,6rem);
+}
+.cover .wrap{max-width:40rem}
+.cover-kicker{
+  font-family:"Literata",serif;font-size:.8rem;letter-spacing:.06em;
+  color:var(--night-brass);margin:0 0 2.25rem;
+}
+.cover h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;font-variation-settings:"SOFT" 40,"WONK" 1;
+  font-size:clamp(2.3rem,8.5vw,3.9rem);
+  line-height:1.04;letter-spacing:-.02em;margin:0;
+  text-wrap:balance;
+}
+.cover h1 em{font-style:italic;font-weight:400}
+.cover-rule{width:4.5rem;height:2px;background:var(--night-brass);margin:2rem 0 1.75rem;border:0}
+.cover p{margin:0;color:#B4BECD;max-width:30rem}
+.cover-meta{margin-top:2.75rem;font-size:.9rem;color:#8593A6}
+
+/* toc */
+.toc{padding:3.25rem 0 1rem}
+.toc h2{
+  font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;
+  margin:0 0 1.35rem;color:var(--muted);letter-spacing:.01em;
+}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.toc li{counter-increment:toc;border-top:1px solid var(--rule)}
+.toc li:last-child{border-bottom:1px solid var(--rule)}
+.toc a{
+  display:flex;gap:1rem;align-items:baseline;
+  padding:.7rem 0;text-decoration:none;color:var(--ink);
+}
+.toc a::before{
+  content:counter(toc,upper-roman);
+  font-family:"Fraunces",serif;color:var(--brass);
+  font-size:.82rem;min-width:2.1rem;letter-spacing:.04em;
+}
+.toc a:hover span,.toc a:focus-visible span{text-decoration:underline;text-underline-offset:3px}
+
+/* chapters */
+main{padding-bottom:1rem}
+.chapter{padding:3.25rem 0 .5rem}
+.chapter + .chapter{border-top:1px solid var(--rule)}
+.num{
+  font-family:"Fraunces",serif;font-size:.85rem;color:var(--brass);
+  letter-spacing:.08em;margin:0 0 .5rem;
+}
+h2.title{
+  font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-variation-settings:"SOFT" 30;
+  font-size:clamp(1.65rem,5.4vw,2.15rem);line-height:1.14;
+  letter-spacing:-.015em;margin:0 0 1.6rem;text-wrap:balance;
+}
+h3{
+  font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;
+  margin:2.4rem 0 .85rem;line-height:1.3;
+}
+p{margin:0 0 1.15rem}
+strong{font-weight:600}
+a{color:var(--brass)}
+
+/* lead paragraph */
+.lead{font-size:1.16rem;line-height:1.62}
+
+/* quote band */
+.quote{
+  background:var(--night);color:var(--night-ink);
+  margin:2.5rem -1.35rem;padding:2.4rem 1.35rem;
+}
+.quote blockquote{
+  margin:0 auto;max-width:34rem;
+  font-family:"Fraunces",serif;font-size:1.22rem;line-height:1.42;
+  font-variation-settings:"SOFT" 40,"WONK" 1;
+}
+.quote cite{
+  display:block;margin-top:1.1rem;font-style:normal;
+  font-family:"Literata",serif;font-size:.85rem;color:var(--night-brass);
+}
+@media (min-width:640px){
+  .quote{margin-left:-2.5rem;margin-right:-2.5rem;padding-left:2.5rem;padding-right:2.5rem}
+}
+
+/* flow diagram */
+.flow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;
+  margin:1.75rem 0 1.4rem;font-family:"Fraunces",serif;font-size:1rem;
+}
+.flow b{font-weight:600;border-bottom:2px solid var(--brass);padding-bottom:.1rem}
+.flow i{font-style:normal;color:var(--brass)}
+
+/* two-column comparison */
+.compare{margin:1.9rem 0 1.5rem;border-top:2px solid var(--ink)}
+.compare .col-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;
+  padding:.7rem 0;border-bottom:1px solid var(--rule);
+}
+.compare .col-head span{font-family:"Fraunces",serif;font-size:.92rem;font-weight:600}
+.compare .col-head span:last-child{color:var(--brass)}
+.compare .row{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;
+  padding:.95rem 0;border-bottom:1px solid var(--rule);
+  font-size:.96rem;line-height:1.55;
+}
+.compare .row div:first-child{color:var(--muted)}
+@media (max-width:540px){
+  .compare .col-head{display:none}
+  .compare .row{grid-template-columns:1fr;gap:.55rem;padding:1.1rem 0}
+  .compare .row div::before{
+    display:block;font-family:"Fraunces",serif;font-size:.72rem;
+    letter-spacing:.05em;margin-bottom:.2rem;
+  }
+  .compare .row div:first-child::before{content:"Mente insegura";color:var(--muted)}
+  .compare .row div:last-child::before{content:"Mente autoconfiante";color:var(--brass)}
+}
+
+/* numbered rules */
+ol.rules{list-style:none;margin:1.6rem 0;padding:0;counter-reset:r}
+ol.rules li{
+  counter-increment:r;position:relative;padding-left:2.5rem;
+  margin-bottom:.95rem;line-height:1.58;
+}
+ol.rules li::before{
+  content:counter(r);position:absolute;left:0;top:.06rem;
+  font-family:"Fraunces",serif;font-size:.9rem;color:var(--brass);
+  width:1.8rem;text-align:right;
+}
+
+/* plain bullets */
+ul.dots{list-style:none;margin:1.4rem 0;padding:0}
+ul.dots li{position:relative;padding-left:1.4rem;margin-bottom:.6rem;line-height:1.58}
+ul.dots li::before{
+  content:"";position:absolute;left:.25rem;top:.72rem;
+  width:5px;height:5px;background:var(--brass);border-radius:50%;
+}
+
+/* steps (P-P-A) */
+.steps{margin:1.9rem 0}
+.step{padding:1.15rem 0;border-top:1px solid var(--rule)}
+.step:last-child{border-bottom:1px solid var(--rule)}
+.step h4{
+  font-family:"Fraunces",serif;font-size:1.02rem;font-weight:600;
+  margin:0 0 .35rem;
+}
+.step h4 small{
+  display:block;font-family:"Literata",serif;font-weight:400;
+  font-size:.78rem;color:var(--brass);letter-spacing:.05em;margin-bottom:.2rem;
+}
+.step p{margin:0;font-size:.98rem;line-height:1.6}
+
+/* case box */
+.case{
+  border-left:2px solid var(--brass);padding:.15rem 0 .15rem 1.15rem;
+  margin:1.9rem 0;font-size:.98rem;line-height:1.62;color:var(--muted);
+}
+.case b{color:var(--ink);font-weight:600}
+
+/* affirmations */
+.affirm{margin:1.8rem 0;padding:0;list-style:none}
+.affirm li{
+  font-family:"Fraunces",serif;font-size:1.06rem;line-height:1.4;
+  padding:.85rem 0;border-bottom:1px solid var(--rule);
+}
+.affirm li span{display:block;font-family:"Literata",serif;font-size:.8rem;color:var(--brass);margin-top:.3rem}
+
+/* end */
+.end{padding:3rem 0 4.5rem;text-align:center}
+.end-mark{font-family:"Fraunces",serif;color:var(--brass);font-size:1.3rem;letter-spacing:.35em}
+.end p{margin-top:1.2rem;color:var(--muted);font-size:.9rem}
+.totop{
+  display:inline-block;margin-top:1.5rem;font-size:.88rem;
+  color:var(--brass);text-decoration:none;border-bottom:1px solid currentColor;
+  padding-bottom:1px;
+}
+
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #progress span{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"><span></span></div>
+
+<header class="cover" id="topo">
+  <div class="wrap">
+    <p class="cover-kicker">Guia prático</p>
+    <h1>O poder do pensamento <em>transformativo</em></h1>
+    <hr class="cover-rule">
+    <p>Um método para trocar a psicologia da derrota por um padrão mental de fé, energia e resultado — inspirado na obra de Norman Vincent Peale.</p>
+    <p class="cover-meta">Oito capítulos · leitura de 20 minutos</p>
+  </div>
+</header>
+
+<nav class="toc wrap" aria-label="Sumário">
+  <h2>Sumário</h2>
+  <ol>
+    <li><a href="#cap1"><span>O despertar para uma vida plena</span></a></li>
+    <li><a href="#cap2"><span>A engrenagem do sucesso</span></a></li>
+    <li><a href="#cap3"><span>O sistema de crenças e o combate à inferioridade</span></a></li>
+    <li><a href="#cap4"><span>Técnicas de condicionamento e autossugestão</span></a></li>
+    <li><a href="#cap5"><span>A ciência da oração e a energia divina</span></a></li>
+    <li><a href="#cap6"><span>Serenidade e paz de espírito</span></a></li>
+    <li><a href="#cap7"><span>A fórmula P-P-A</span></a></li>
+    <li><a href="#cap8"><span>O novo padrão de vida</span></a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+  <section class="chapter" id="cap1">
+    <p class="num">CAPÍTULO I</p>
+    <h2 class="title">O despertar para uma vida plena</h2>
+    <p class="lead">Meu caro leitor, eu convido você a refletir sobre como tem conduzido seus dias. Muitas pessoas que encontro passam suas horas lutando contra as circunstâncias, sentindo um ressentimento opaco pelo que consideram "maus momentos" impostos pela vida. Elas estão cansadas, exaustas e, frequentemente, sentindo-se derrotadas.</p>
+    <p>Mas eu lhe trago uma promessa fundamental, extraída da sabedoria de Norman Vincent Peale: você não precisa ser derrotado por nada.</p>
+    <p>O propósito desta obra é ensinar que a paz de espírito não é um luxo, mas a base indispensável para a saúde física e para um fluxo constante de energia. Quando você aprende a expulsar os obstáculos da mente e canaliza o poder espiritual, o que antes o vencia torna-se degrau para a vitória.</p>
+
+    <div class="quote">
+      <blockquote>A vida pode ser plena de alegria e satisfação. Disto não tenho nenhuma dúvida, pois observei inúmeras pessoas aprenderem e aplicarem um sistema de procedimentos simples que trouxe esses benefícios em suas vidas.</blockquote>
+      <cite>Norman Vincent Peale</cite>
+    </div>
+
+    <h3>O que este método produz</h3>
+    <p>Ao adotar esta prática de "Cristianismo Aplicado", você experimentará:</p>
+    <ul class="dots">
+      <li>Uma melhora surpreendente na saúde física e mental.</li>
+      <li>Aumento da eficiência e uma energia que não se esgota.</li>
+      <li>Relações interpessoais mais harmoniosas e magnéticas.</li>
+      <li>O controle sobre as circunstâncias, em vez de ser dirigido por elas.</li>
+      <li>Uma paz interior que atua como o combustível para o sucesso.</li>
+    </ul>
+  </section>
+
+  <section class="chapter" id="cap2">
+    <p class="num">CAPÍTULO II</p>
+    <h2 class="title">A engrenagem do sucesso: pensamento, sentimento, ação e resultado</h2>
+    <p>Entenda, meu amigo, que a vida que você leva hoje é, em grande parte, o resultado do seu padrão mental. Existe uma lógica por trás do sucesso: o pensamento positivo ou negativo determina sua realidade física.</p>
+
+    <div class="case">
+      <b>O vendedor de cartões.</b> Ele passava o dia dirigindo entre clientes, mas sua mente estava saturada de medo e expectativas de derrota. Como resultado, suas vendas eram pífias. Ao mudar o "chip" mental e alimentar-se de afirmações de coragem, ele alterou seu estado emocional e, consequentemente, sua performance profissional.
+    </div>
+
+    <h3>O fluxo de desempenho</h3>
+    <div class="flow">
+      <b>Pensamento</b><i>→</i><b>Sentimento</b><i>→</i><b>Ação</b><i>→</i><b>Resultado</b>
+    </div>
+    <p>Se o pensamento inicial for de dúvida, o sentimento será de insegurança, a ação será hesitante e o resultado será a derrota. Se o pensamento for de fé, o ciclo se inverte para a vitória.</p>
+  </section>
+
+  <section class="chapter" id="cap3">
+    <p class="num">CAPÍTULO III</p>
+    <h2 class="title">O sistema de crenças e o combate à inferioridade</h2>
+    <p>O complexo de inferioridade é uma barreira que inibe seus poderes interiores. Como bem disse o Dr. Karl Menninger, <strong>as atitudes são mais importantes do que os fatos</strong>. Um fato, por mais difícil que pareça, não tem o poder de derrotá-lo se a sua atitude mental for de confiança. Muitas vezes, as raízes dessa insegurança estão na infância, mas você pode tratar essas feridas com autoconhecimento e fé.</p>
+
+    <div class="case">
+      <b>O homem que "perdeu tudo".</b> Aos 52 anos, ele procurou Peale desesperado, achando que sua vida havia acabado. Ao ser desafiado a listar seus ativos reais, percebeu que a derrota era apenas uma sombra em sua mente.
+    </div>
+
+    <h3>Duas atitudes mentais</h3>
+    <div class="compare">
+      <div class="col-head"><span>Mente insegura — atitude de derrota</span><span>Mente autoconfiante — atitude de fé</span></div>
+      <div class="row">
+        <div>Concentra-se no que foi perdido e na escassez.</div>
+        <div>Foca nos sete ativos fundamentais: esposa maravilhosa; filhos devotados; amigos leais; integridade e consciência limpa; saúde física; viver em uma terra de oportunidades; fé em Deus.</div>
+      </div>
+      <div class="row">
+        <div>Visualiza obstáculos inflados pelo medo.</div>
+        <div>Vê os fatos de forma objetiva, porém inclinada ao lado positivo.</div>
+      </div>
+      <div class="row">
+        <div>Repete afirmações de fracasso e cansaço.</div>
+        <div>Afirma: "Posso todas as coisas em Cristo que me fortalece" (Filipenses 4:13).</div>
+      </div>
+      <div class="row">
+        <div>Isola-se na autopiedade e no desespero.</div>
+        <div>Pratica a consciência de que Deus é seu parceiro constante.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="cap4">
+    <p class="num">CAPÍTULO IV</p>
+    <h2 class="title">Técnicas de condicionamento e autossugestão</h2>
+    <p>Para expulsar o medo, você precisa reeducar o seu subconsciente. O segredo é encher a mente até transbordar de fé, não deixando espaço para a dúvida. Eu sugiro que você use cartões de memorização, assim como o caixeiro viajante que prendia versículos no painel do seu carro. Ao saturar sua mente com pensamentos saudáveis, você altera sua psicologia de derrota.</p>
+
+    <h3>As dez regras de Peale para a autoconfiança</h3>
+    <ol class="rules">
+      <li>Formule e estampe indelevelmente em sua mente uma imagem de si mesmo tendo sucesso.</li>
+      <li>Sempre que um pensamento negativo vier à mente, cancele-o deliberadamente com um pensamento positivo.</li>
+      <li>Não crie obstáculos na imaginação; estude-os com eficiência, mas não os infle pelo medo.</li>
+      <li>Não tente copiar os outros; ninguém pode ser "você" de forma tão eficiente quanto você mesmo.</li>
+      <li>Repita dez vezes ao dia: "Se Deus é por nós, quem será contra nós?" (Romanos 8:31).</li>
+      <li>Busque um conselheiro para entender a origem dos seus sentimentos de inferioridade.</li>
+      <li>Pratique dez vezes ao dia a afirmação: "Posso todas as coisas em Cristo que me fortalece" (Filipenses 4:13).</li>
+      <li>Faça uma estimativa verdadeira de sua capacidade e aumente-a em 10%.</li>
+      <li>Coloque-se nas mãos de Deus e acredite que está recebendo todo o poder necessário agora.</li>
+      <li>Lembre-se de que Deus está com você e nada pode derrotá-lo.</li>
+    </ol>
+  </section>
+
+  <section class="chapter" id="cap5">
+    <p class="num">CAPÍTULO V</p>
+    <h2 class="title">A ciência da oração e a conexão com a energia divina</h2>
+    <p>A oração não é um rito vazio; é um método para liberar energia. Garanto a você: <strong>não é o trabalho árduo que drena sua energia, mas sim a agitação emocional</strong> — conflitos, ódio, medo e culpa. A oração "normaliza" o indivíduo, fechando os vazamentos de energia e conectando-o à fonte do Criador.</p>
+
+    <h3>Guia de higiene mental</h3>
+    <p>A prescrição de Romanos 12:2, em três movimentos:</p>
+    <div class="steps">
+      <div class="step">
+        <h4><small>PRIMEIRO MOVIMENTO</small>Esvaziamento da mente</h4>
+        <p>Duas vezes ao dia, pratique a catarse. Despeje diante de Deus todos os seus medos, ódios e arrependimentos. Sinta-se limpo por dentro.</p>
+      </div>
+      <div class="step">
+        <h4><small>SEGUNDO MOVIMENTO</small>Reabastecimento</h4>
+        <p>Imediatamente, preencha o vácuo com pensamentos criativos e passagens das Escrituras. Uma mente vazia atrai velhos pensamentos; uma mente ocupada com o bem os repele.</p>
+      </div>
+      <div class="step">
+        <h4><small>TERCEIRO MOVIMENTO</small>Afirmação da presença</h4>
+        <p>Pratique disparar orações de boa vontade para estranhos na rua. Isso cria um circuito de energia positiva que retorna para você.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="cap6">
+    <p class="num">CAPÍTULO VI</p>
+    <h2 class="title">Serenidade e paz de espírito: o segredo da eficiência</h2>
+    <p>Uma mente pacífica gera poder porque não desperdiça força em tensões inúteis. A saúde física é profundamente afetada pelos seus pensamentos. Para dormir melhor e viver com mais vigor, você deve substituir o "ouvido cheio de problemas" por uma "mente cheia de paz". Use palavras curativas como <em>tranquilidade</em> e <em>serenidade</em>, repetindo-as audivelmente para induzir relaxamento.</p>
+
+    <h3>Exercício de silêncio diário</h3>
+    <ul class="dots">
+      <li>Reserve quinze minutos de silêncio absoluto a cada vinte e quatro horas.</li>
+      <li>Sente-se ou deite-se sem ler, escrever ou falar. Coloque a mente em ponto morto.</li>
+      <li>Visualize sua mente como a superfície de um lago perfeitamente calmo.</li>
+      <li>Sincronize seu ritmo com o ritmo de Deus. Ele não corre; age com perfeita organização.</li>
+    </ul>
+  </section>
+
+  <section class="chapter" id="cap7">
+    <p class="num">CAPÍTULO VII</p>
+    <h2 class="title">A fórmula P-P-A</h2>
+    <p>Para resolver qualquer problema, aplique esta fórmula tripartida. Ela exige fé, mas também exige ação inteligente.</p>
+
+    <div class="steps">
+      <div class="step">
+        <h4><small>PRAYERIZE</small>Orar</h4>
+        <p>Converse com Deus de forma simples. Trate-O como um parceiro de negócios próximo. Não use frases estereotipadas; fale a sua língua.</p>
+      </div>
+      <div class="step">
+        <h4><small>PICTURIZE</small>Visualizar</h4>
+        <p>Imprima uma imagem mental nítida do sucesso. Mantenha essa imagem com tenacidade e entregue-a à vontade de Deus.</p>
+      </div>
+      <div class="step">
+        <h4><small>ACTUALIZE</small>Realizar</h4>
+        <p>Aqui está o segredo: trabalhe com afinco e inteligência para que o resultado se materialize. A fé sem obras é morta; você deve agir com a certeza de que o poder divino está operando através do seu esforço.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <b>O teste de noventa dias.</b> Um casal estava à beira do divórcio. A esposa, após aconselhamento, concordou em não reagir com histeria e propôs um acordo de noventa dias antes da separação definitiva. Durante esse tempo, ela orou e visualizou o marido ocupando sua cadeira habitual, recuperando a harmonia. Trabalhou em sua própria atitude, tornando-se mais gentil e menos dominadora. Ao fim do prazo, o marido, que antes queria sair, admitiu que não poderia viver sem ela. O que ela visualizou, e pelo qual trabalhou, tornou-se realidade.
+    </div>
+  </section>
+
+  <section class="chapter" id="cap8">
+    <p class="num">CAPÍTULO VIII</p>
+    <h2 class="title">O novo padrão de vida</h2>
+    <p>Meu caro leitor, o poder da fé faz maravilhas. Lembre-se da história dos tacos de Schlater: não era o taco que tinha o poder, mas a <strong>crença</strong> dos jogadores de que possuíam uma ferramenta invencível, que liberou suas habilidades ocultas. Da mesma forma, sua crença em Deus e em si mesmo é a ferramenta que removerá suas montanhas.</p>
+    <p>Adote a filosofia de não acreditar na derrota. Elimine os pequenos negativos do seu vocabulário — "acho que vou me atrasar", "isso não vai dar certo". Um motor limpo sempre fornece potência; uma mente limpa de negatividade sempre fornece sucesso.</p>
+
+    <h3>Afirmações diárias para uma vida vitoriosa</h3>
+    <ul class="affirm">
+      <li>Eu posso todas as coisas em Cristo que me fortalece.<span>Filipenses 4:13</span></li>
+      <li>Se Deus é por mim, quem será contra mim?<span>Romanos 8:31</span></li>
+      <li>Acredito que Deus me dá poder para alcançar o que realmente quero.</li>
+      <li>Espero o melhor e, com a ajuda de Deus, alcançarei o melhor.</li>
+      <li>Este é o dia que o Senhor fez; vou me alegrar e me regozijar nele.<span>Salmo 118:24</span></li>
+      <li>Eu não acredito na derrota. Com Deus, eu passo direto pelo problema.</li>
+    </ul>
+
+    <p>Vá em frente com confiança. O sucesso não é um acidente, é um hábito mental. Eu estou orando por você.</p>
+  </section>
+
+</main>
+
+<footer class="end wrap">
+  <p class="end-mark">· · ·</p>
+  <p>Fim do livro</p>
+  <a class="totop" href="#topo">Voltar ao início</a>
+</footer>
+
+<script>
+(function(){
+  var bar=document.querySelector('#progress span');
+  if(!bar)return;
+  var ticking=false;
+  function update(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var pct=h>0?(window.scrollY/h)*100:0;
+    bar.style.width=Math.min(100,Math.max(0,pct))+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){window.requestAnimationFrame(update);ticking=true;}
+  },{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();
+})();
+</script>
+</body>
+</html>
