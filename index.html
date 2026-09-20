@@ -104,6 +104,21 @@ img{max-width:100%}
 }
 .cover-meta{margin-top:.4rem;font-size:.9rem;color:#8593A6}
 
+.listen{margin-top:1.9rem}
+.listen-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:transparent;border:1px solid rgba(233,234,228,.3);
+  color:var(--night-ink);border-radius:999px;
+  font-family:"Literata",serif;font-size:.88rem;
+  padding:.55rem 1.1rem .55rem .9rem;cursor:pointer;
+}
+.listen-btn svg{color:var(--night-brass)}
+.listen-btn:hover,.listen-btn:focus-visible{border-color:var(--night-brass)}
+.listen-audio{
+  display:none;margin-top:.85rem;width:100%;max-width:22rem;
+}
+.listen-audio.is-open{display:block}
+
 /* toc */
 .toc{padding:3.25rem 0 1rem}
 .toc h2{
@@ -275,6 +290,13 @@ ul.dots li::before{
     <h1>O poder do pensamento <em>transformativo</em></h1>
     <hr class="cover-rule">
     <p>Um método para trocar a psicologia da derrota por um padrão mental de fé, energia e resultado — inspirado na obra de Norman Vincent Peale.</p>
+    <div class="listen">
+      <button type="button" class="listen-btn" id="listenBtn" aria-expanded="false" aria-controls="listenPlayer">
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        Ouvir o podcast
+      </button>
+      <audio id="listenPlayer" class="listen-audio" controls preload="none" src="podcast.mp4"></audio>
+    </div>
     <p class="cover-author">Marcus Estanislao</p>
     <p class="cover-meta">Oito capítulos · leitura de 20 minutos</p>
   </div>
@@ -476,6 +498,19 @@ ul.dots li::before{
   <a class="totop" href="#topo">Voltar ao início</a>
 </footer>
 
+<script>
+(function(){
+  var btn=document.getElementById('listenBtn');
+  var player=document.getElementById('listenPlayer');
+  if(!btn||!player)return;
+  btn.addEventListener('click',function(){
+    var open=player.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    if(open){player.play().catch(function(){});}
+    else{player.pause();}
+  });
+})();
+</script>
 <script>
 (function(){
   var bar=document.querySelector('#progress span');
